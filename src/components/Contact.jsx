@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Map from "../img/map.png";
 import Phone from "../img/phone.png";
 import Send from "../img/send.png";
-
+import emailjs from "emailjs-com";
+import {useRef, useState } from "react";
 const Container = styled.div`
     height: 90%;
-    background-color: #f8fcfc;
+    background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
 ;
 `;
 
@@ -142,6 +143,30 @@ const Text = styled.span`
 `;
 
 const Contact = () => {
+
+const formRef = useRef();
+const [done, setDone] = useState(false)
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  emailjs
+    .sendForm(
+      "service_gsx5luf",
+      "template_dl2h8xc",
+      formRef.current,
+      "BcF3tMKVgfY3DYmSy"
+    )
+    .then(
+      (result) => {
+        console.log(result.text);
+        setDone(true)
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+};
+
   return (
     <Container>
       <Title>
@@ -149,15 +174,17 @@ const Contact = () => {
           </Title>
       <Wrapper>
         <FormContainer>
-          <Form>
+        <Form ref={formRef} onSubmit={handleSubmit}>
             <LeftForm>
-              <Input placeholder="Your Name" />
-              <Input placeholder="Your Email" />
-              <Input placeholder="Subject" />
+              <Input placeholder="Your Name" name="name"/>
+              <Input placeholder="Your Email"  name="email" />
+              <Input placeholder="Subject" name="subject" />
             </LeftForm>
             <RightForm>
-              <TextArea placeholder="Your Message" />
-              <Button>Send</Button>
+              <TextArea placeholder="Your Message" name="message"/>
+              <Button >Send</Button>
+              {done && "Thank you..."}
+
             </RightForm>
           </Form>
         </FormContainer>
