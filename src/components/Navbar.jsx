@@ -77,6 +77,8 @@ const ToggleButton = styled.button`
   display:none;
   @media only screen and (max-width: 992px) {
     display:block;
+    padding:20px
+
   }
 `
 const Navbar = () => {
