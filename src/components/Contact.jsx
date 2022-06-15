@@ -8,12 +8,13 @@ import {useRef, useState } from "react";
 const Container = styled.div`
     height: 90%;
     background: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png");
+    padding : 40px 0px;
 ;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +31,7 @@ const FormContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  margin: 50px;
+  margin: 20px 50px;
   margin-top: 0;
   @media only screen and (max-width: 992px) {
     margin: 20px;
@@ -80,6 +81,19 @@ const Input = styled.input`
     padding: 5px;
   }
 `;
+
+const Msg = styled.p`
+  text-align:center;
+  border: none;
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  @media only screen and (max-width: 480px) {
+    padding: 5px;
+    font-size: 14px;
+  }
+`
 
 const TextArea = styled.textarea`
   width: 200px;
@@ -151,10 +165,10 @@ const handleSubmit = (e) => {
   e.preventDefault();
   emailjs
     .sendForm(
-      "service_gsx5luf",
-      "template_dl2h8xc",
+      "service_sdd0mvy",
+      "template_ge6tvxv",
       formRef.current,
-      "BcF3tMKVgfY3DYmSy"
+      "x40Id5lk2dRgM0Qsf"
     )
     .then(
       (result) => {
@@ -171,7 +185,7 @@ const handleSubmit = (e) => {
     <Container>
       <Title>
             Questions? <br /> Let's Get In Touch
-          </Title>
+      </Title>
       <Wrapper>
         <FormContainer>
         <Form ref={formRef} onSubmit={handleSubmit}>
@@ -182,8 +196,7 @@ const handleSubmit = (e) => {
             </LeftForm>
             <RightForm>
               <TextArea placeholder="Your Message" name="message"/>
-              <Button >Send</Button>
-              {done && "Thank you..."}
+              {done ? <Msg>Thank You!</Msg> : <Button >Send</Button> }
 
             </RightForm>
           </Form>
