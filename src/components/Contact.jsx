@@ -195,7 +195,7 @@ const handleSubmit = (e) => {
               <Input placeholder="Subject" name="subject" required={true}/>
             </LeftForm>
             <RightForm>
-              <TextArea placeholder="Your Message" name="message" required={true} minLength={30}/>
+              <TextArea placeholder="Your Message" name="message" required={true} minLength={15}/>
               {done ? <Msg>Thank You!</Msg> : <Button >Send</Button> }
 
             </RightForm>
