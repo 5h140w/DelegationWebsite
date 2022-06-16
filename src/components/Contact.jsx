@@ -190,12 +190,12 @@ const handleSubmit = (e) => {
         <FormContainer>
         <Form ref={formRef} onSubmit={handleSubmit}>
             <LeftForm>
-              <Input placeholder="Your Name" name="name"/>
-              <Input placeholder="Your Email"  name="email" />
-              <Input placeholder="Subject" name="subject" />
+              <Input placeholder="Your Name" name="name" required={true}/>
+              <Input placeholder="Your Email"  name="email" required={true}/>
+              <Input placeholder="Subject" name="subject" required={true}/>
             </LeftForm>
             <RightForm>
-              <TextArea placeholder="Your Message" name="message"/>
+              <TextArea placeholder="Your Message" name="message" required={true} minLength={30}/>
               {done ? <Msg>Thank You!</Msg> : <Button >Send</Button> }
 
             </RightForm>
